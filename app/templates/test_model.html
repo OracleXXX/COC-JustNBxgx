@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}登陆{% endblock %}
+
+{% block app_content %}
+<div class="container">
+    <div class="page-header" style="margin-top: 120px;">
+        <h1 class="white">Test Model</h1>
+    </div>
+    <div class="col-md-4" >
+
+        <!-- 这里使用wtf.quick_form即可创建表单，那么form哪里来呢？看下面 -->
+        {{ wtf.quick_form(form) }}
+
+    </div>
+</div>
+{% endblock %}

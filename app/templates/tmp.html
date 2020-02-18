@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block app_content %}
+<head>
+    <title>My CSS experiment</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        body{
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+        .container{
+            width: 100%;
+            margin: 0 auto;
+        }
+        .left{
+            width: 33%;
+            height: 1000px;
+            background: #33FF61;
+            float: left;
+        }
+        .right{
+            width: 33%;
+            height: 1000px;
+            background: #AB1FE4;
+            float: right;
+        }
+        .middle{
+            width: 34%;
+            height: 1000px;
+            background: #13ECE2;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <h2>&emsp; &emsp; &emsp;&emsp;&emsp;&emsp;level 1 to level 5:</h2>
+            {% for i in range(1, 6) %}
+                <div class="media">
+                    <div class="media-left">
+                        <a href="{{ url_for('details_townhall') }}">
+                            <img src="{{ imgs[i] }}", alt = 'Loading', width="100" height="100">
+                        </a>
+                    </div>
+                <div class="media-body">
+                <br>
+                <h3 class = "media-heading">
+                    <br>
+                    <p>Town Hall, Level {{ i }}</p>
+                </h3>
+                </div>
+                <hr>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="middle">
+        <h2> &emsp; &emsp; &emsp;&emsp;&emsp;&emsp;level 6 to level 10:</h2>
+            {% for i in range(6, 11) %}
+                <div class="media">
+                    <div class="media-left">
+                        <a href="{{ url_for('details_townhall') }}">
+                            <img src="{{ imgs[i] }}", alt = 'Loading', width="100" height="100">
+                        </a>
+                    </div>
+                <div class="media-body">
+                <br>
+                <h3 class = "media-heading">
+                    <br>
+                    <p>Town Hall, Level {{ i }}</p>
+                </h3>
+                </div>
+                <hr>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="right">
+            <h2> &emsp; &emsp; &emsp;&emsp;&emsp;&emsp;level 11 to level 13:</h2>
+            {% for i in range(11, 14) %}
+                <div class="media">
+                    <div class="media-left">
+                        <a href="{{ url_for('details_townhall') }}">
+                            <img src="{{ imgs[i] }}", alt = 'Loading', width="100" height="100">
+                        </a>
+                    </div>
+                <div class="media-body">
+                <br>
+                <h3 class = "media-heading">
+                    <br>
+                    <p>Town Hall, Level {{ i }}</p>
+                </h3>
+                </div>
+                    <hr>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+{% endblock %}
