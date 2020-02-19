@@ -18,6 +18,7 @@ def allowed_file(filename):
 
 
 @app.route('/', methods=['GET', 'POST'])
+@login_required
 def index():
     title = 'Clash of Clans'
     form = PostTweetForm()
