@@ -7,17 +7,17 @@ from app.forms import *
 from app.models import User, Post, img_TownHall
 from app.email import send_reset_password_mail
 from app.TestM import testm
+from decimal import Decimal
 
 ALLOWED_EXTENTIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
-
+histories = []
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENTIONS
 
 
 @app.route('/', methods=['GET', 'POST'])
-@login_required
 def index():
     title = 'Clash of Clans'
     form = PostTweetForm()
@@ -206,7 +206,15 @@ def test_model():
     form = TestForm()
     if form.validate_on_submit():
         duration = form.duration.data
-        x = testm(duration = duration)
-        flash('我每个月比孙迪多赚' + str(x[0]) + '刀', category='info')
+        predict_salary = testm(duration = duration)
+        predict_salary = Decimal(predict_salary[0]).quantize(Decimal("0.00"))
+        histories.append(predict_salary)
+
+        flash('{}{}{}'.format('JustNBxgx每个月比孙迪多赚',str(predict_salary), '刀'), category='info')
+        return render_template('test_model.html', title='Test Model', duration = duration, form=form, predict_salary = predict_salary, histories = histories)
+    else:
+        flash('Please input correct number', category='danger')
         #return render_template('test_model.html', title='Test Model', form=form)
-    return render_template('test_model.html', title='Test Model', form=form)
+
+    return render_template('test_model.html', title='Test Model', form=form, predict_salary = 0, histories = histories)
+

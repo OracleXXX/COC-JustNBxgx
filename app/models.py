@@ -70,3 +70,5 @@ class img_TownHall():
     imgs = {}
     for i in range(1, 14):
         imgs[i] = '/static/ImgOfTownHall' + '/Town_Hall_' + str(i) + ".jpg"
+
+

@@ -1,18 +1,38 @@
 {% extends 'base.html' %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}登陆{% endblock %}
+{% block title %}TestModel{% endblock %}
 
 {% block app_content %}
 <div class="container">
     <div class="page-header" style="margin-top: 120px;">
         <h1 class="white">Test Model</h1>
     </div>
-    <div class="col-md-4" >
-
+    <div class="col-md-3" >
         <!-- 这里使用wtf.quick_form即可创建表单，那么form哪里来呢？看下面 -->
         {{ wtf.quick_form(form) }}
 
     </div>
 </div>
+
+{{histories}}
+<hr>
+<div class="container">
+<h2>Histories</h2>
+{% for history in histories %}
+<div class="media">
+     <div class="media-left">
+
+         <img class="media-object" src="/static/asset/default-avatar.jpg" alt="avatar", width = '64px' >
+
+     </div>
+     <div class="media-body">
+         <h4 class="media-heading">Unknown User</h4>
+         <small class = 'text-muted'>YearsExperience: {{ duration }}</small>
+         <p>JustNBxgx每个月比孙迪多赚{{ history }}刀</p>
+     </div>
+ </div>
+{% endfor %}
+<hr>
+ <a href="{{ url_for('test_model', histories = []) }}" class="btn btn-primary" role="button">{{ n_followers }}Clear history</a>
 {% endblock %}
