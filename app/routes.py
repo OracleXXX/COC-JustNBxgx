@@ -12,6 +12,7 @@ from decimal import Decimal
 ALLOWED_EXTENTIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 histories = []
+exp_year = []
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENTIONS
@@ -209,13 +210,26 @@ def test_model():
         duration = form.duration.data
         predict_salary = testm(duration = duration)
         predict_salary = Decimal(predict_salary[0]).quantize(Decimal("0.00"))
-        histories.append(predict_salary)
 
-        flash('{}{}{}'.format('JustNBxgx每个月比孙迪多赚',str(predict_salary), '刀'), category='info')
-        return render_template('test_model.html', title='Test Model', duration = duration, form=form, predict_salary = predict_salary, histories = histories)
+        histories.append(predict_salary)
+        exp_year.append(duration)
+        flash('Predictive salary is ${} if work experience is {} years'.format(predict_salary, duration ), category='info')
+        return render_template('test_model.html',
+                               title='Test Model',
+                               duration = duration,
+                               form=form,
+                               n = len(histories),
+                               exp_year = exp_year,
+                               predict_salary = predict_salary,
+                               histories = histories)
     else:
         flash('Please input correct number', category='danger')
         #return render_template('test_model.html', title='Test Model', form=form)
 
-    return render_template('test_model.html', title='Test Model', form=form, predict_salary = 0, histories = histories)
-
+    return render_template('test_model.html',
+                           title='Test Model',
+                           form=form,
+                           predict_salary = 0,
+                           exp_year = exp_year,
+                           n = len(histories),
+                           histories = histories)

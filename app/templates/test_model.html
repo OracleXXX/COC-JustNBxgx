@@ -19,7 +19,7 @@
 <hr>
 <div class="container">
 <h2>Histories</h2>
-{% for history in histories %}
+{% for i in range(n) %}
 <div class="media">
      <div class="media-left">
 
@@ -28,8 +28,8 @@
      </div>
      <div class="media-body">
          <h4 class="media-heading">Unknown User</h4>
-         <small class = 'text-muted'>YearsExperience: {{ duration }}</small>
-         <p>JustNBxgx每个月比孙迪多赚{{ history }}刀</p>
+         <small class = 'text-muted'>YearsExperience: {{ exp_year[i] }}</small>
+         <p>Predictive salary is ${{ histories[i] }}, if work experience is {{ exp_year[i] }} years </p>
      </div>
  </div>
 {% endfor %}
